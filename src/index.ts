@@ -14,9 +14,6 @@ async function initialize() {
 
   const { url } = await startStandaloneServer(server, {
     listen: { port: 3000 },
-    context: async ({ req, res }) => {
-      return { req, res }
-    },
   })
   console.log(`GraphQl server ready at ${url}`)
 }

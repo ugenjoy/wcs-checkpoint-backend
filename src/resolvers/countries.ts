@@ -10,22 +10,25 @@ export class CountriesResolver {
   }
 
   @Query(() => [Country])
-  async countriesByContinent(
-    @Arg('continent', () => String) continent: string
+  async countriesByContinentCode(
+    @Arg('continentCode', () => String) continentCode: string
   ): Promise<Country[]> {
-    const countries = await Country.find({ where: { continent } })
+    const countries = await Country.find({
+      where: { continentCode },
+    })
     return countries
   }
 
   @Query(() => Country)
-  async countryByCode(
-    @Arg('code', () => String) code: string
+  async countryByCountryCode(
+    @Arg('countryCode', () => String) countryCode: string
   ): Promise<Country> {
     const country = await Country.findOne({
-      where: { code },
+      where: { countryCode },
     })
-
-    if (!country) throw new Error('the given country does not exist')
+    if (!country) {
+      throw new Error('The given country code does not refer at any country')
+    }
     return country
   }
 

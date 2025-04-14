@@ -8,34 +8,34 @@ export class Country extends BaseEntity {
   @Field(() => ID)
   id!: number
 
-  @Column({ length: 2, unique: true })
-  @Field()
-  code!: string
-
-  @Column({ length: 50, unique: true })
+  @Column({ length: 200, unique: true })
   @Field()
   name!: string
 
-  @Column({ length: 1, unique: true })
+  @Column({ length: 2, unique: true })
   @Field()
-  emoji!: string
+  countryCode!: string
 
   @Column({ length: 2 })
   @Field()
-  continent!: string
+  continentCode!: string
+
+  @Column({ length: 1, unique: true })
+  @Field()
+  flagEmoji!: string
 }
 
 @InputType()
 export class CountryCreateInput {
   @Field()
-  code!: string
-
-  @Field()
   name!: string
 
   @Field()
-  continent!: string
+  countryCode!: string
 
   @Field()
-  emoji!: string
+  continentCode!: string
+
+  @Field()
+  flagEmoji!: string
 }
